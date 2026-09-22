@@ -15,23 +15,20 @@ V-Server Setup/README.md
 ---
 
 ## Table of Contents
-- [Overview](#Overview)
-- [Project_Structure](#Project_Structure)
-- [Prerequisites](#Prerequisites)
-- [Server_Setup_(V-Server)](#Server_Setup_(V-Server))
-- [SSH_Key_Authentication](#SSH_Key_Authentication)
-- [Disable_Password_Login](#Disable_Password_Login)
-- [NGINX_Installation_&_Configuration](NGINX_Installation_&_Configuration)
-- [Git_Configuration_on_Server](Git_Configuration_on_Server)
-- [GitHub_SSH_Access_from_Server](GitHub_SSH_Access_from_Server)
-- [Testing_&_Validation](Testing_&_Validation)
-- [Security_Considerations](Security_Considerations)
-- [Checklist_(Assignment_Requirements)](Checklist_(Assignment_Requirements))
-- [Extras_/_Notes](Extras_/_Notes)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Server Setup (V-Server)](#server-setup)
+- [SSH Key Authentication](#ssh-key-authentication)
+- [Disable Password Login](#disable-password-login)
+- [NGINX Installation & Configuration](#nginx-installation-configuration)
+- [Git Configuration on Server](#git-configuration-on-server)
+- [GitHub SSH Access from Server](#github-ssh-access-from-server)
+- [Testing & Validation Checklist](#testing-validation-checklist)
+- [Security Considerations](#security-considerations)
 
 ---
 
-## Project_Structure
+## Project_Structure {#project-structure}
 
 V-Server Setup/
 ├── README.md
@@ -39,7 +36,7 @@ V-Server Setup/
 
 ---
 
-## Prerequisites
+## Prerequisites {#prerequisites}
 
 - Linux V-Server (Ubuntu recommended)
 - SSH access to the server
@@ -49,7 +46,7 @@ V-Server Setup/
 - Sudo/root privileges
 
 
-## Server_Setup_(V-Server)
+## Server_Setup_(V-Server) {#server-setup}
 
 Update system:
 ```
@@ -58,7 +55,7 @@ sudo apt update && sudo apt upgrade -y
 
 ---
 
-## SSH_Key_Authentication
+## SSH_Key_Authentication {#ssh-key-authentication}
 
 Generate SSH key (local machine):
 ```
@@ -80,7 +77,7 @@ ssh <user>@<server-ip>
 
 ---
 
-## Disable_Password_Login
+## Disable_Password_Login {#disable-password-login}
 
 Only after SSH key login works.
 
@@ -110,7 +107,7 @@ Expected: Access denied
 
 ---
 
-## NGINX_Installation_&_Configuration
+## NGINX_Installation_&_Configuration {#nginx-installation-configuration}
 
 Install NGINX:
 ```
@@ -154,7 +151,7 @@ Test in browser:
 
 ---
 
-## Git_Configuration_on_Server
+## Git_Configuration_on_Server {#git-configuration-on-server}
 ```
 
 git config --global user.name <Your Name>
@@ -169,7 +166,7 @@ git config --list
 
 ---
 
-## GitHub_SSH_Access_from_Server
+## GitHub_SSH_Access_from_Server {#github-ssh-access-from-server}
 
 Generate SSH key on server:
 ```
@@ -198,7 +195,7 @@ Hi username! You've successfully authenticated...
 
 ---
 
-## Testing_&_Validation_Checklist
+## Testing_&_Validation_Checklist {#testing-validation-checklist}
 
 - SSH login works via key authentication
 - Password login disabled
@@ -213,7 +210,7 @@ Hi username! You've successfully authenticated...
 
 ---
 
-## Security_Considerations
+## Security_Considerations {#security-considerations}
 
 - Password authentication disabled
 - SSH key authentication enforced
