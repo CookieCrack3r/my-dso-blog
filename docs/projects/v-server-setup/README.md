@@ -150,7 +150,7 @@ sudo systemctl restart nginx
 
 Test in browser:
 
-http://<server-ip>
+`http://<server-ip>`
 
 ---
 
