@@ -44,7 +44,9 @@ _TODO: Document your own steps. Add screenshots to `./images/`._
 2. _What did you change?_
 3. _What data did you gain access to?_
 
+{/* TODO: add screenshot, then uncomment:
 ![Step 1](./images/step-1.png)
+*/}
 
 ## Mitigation
 

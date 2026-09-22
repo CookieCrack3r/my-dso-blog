@@ -81,8 +81,10 @@ admin@juice-sh.op'--
 **Result:** we are logged in as admin (visible via the account menu / email), and
 the Score Board marks the *Login Admin* challenge as solved.
 
+{/* TODO: add screenshots, then uncomment:
 ![Login form with payload](./images/step-1.png)
 ![Logged in as admin](./images/step-2.png)
+*/}
 
 ## Mitigation
 

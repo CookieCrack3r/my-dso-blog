@@ -44,7 +44,9 @@ _TODO: Document your own steps. Add screenshots to `./images/`._
 2. _What input did you use?_
 3. _How did you confirm code execution?_
 
+{/* TODO: add screenshot, then uncomment:
 ![Step 1](./images/step-1.png)
+*/}
 
 ## Mitigation
 
