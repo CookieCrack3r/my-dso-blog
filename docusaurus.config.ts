@@ -75,9 +75,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'DSO Learning Journal',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'DSO Learning Journal Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -88,7 +88,7 @@ const config: Config = {
           label: 'Docs',
         },
         {
-          href: 'https://github.com/spmse/dev-blog-template',
+          href: gitRepositoryUrl,
           label: 'Github',
           position: 'right',
         },
@@ -104,22 +104,9 @@ const config: Config = {
               label: 'Tutorial',
               to: '/docs/guides/intro',
             },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              label: 'Projects',
+              to: '/docs/projects',
             },
           ],
         },
@@ -128,12 +115,16 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            }
+              href: gitRepositoryUrl,
+            },
+            {
+              label: 'Template',
+              href: 'https://github.com/Developer-Akademie-DevSecOpsKurs/dev-blog-template',
+            },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Sven Patrick Meier (spmse). Built with Docusaurus and 💚.`,
+      copyright: `Copyright © ${new Date().getFullYear()} CookieCrack3r - DSO Learning Journal. Built with Docusaurus and 💚, extended from the developer-akademie-starter.`,
     },
     prism: {
       theme: prismThemes.github,
@@ -160,7 +151,7 @@ if (blogEnabled) {
   (config.themeConfig.navbar as any).items.push({to: '/blog', label: 'Blog', position: 'left'});
   (
     config.themeConfig.footer as any
-  ).links[2].items.push({
+  ).links[1].items.push({
     to: '/blog',
     label: 'Blog',
   });
