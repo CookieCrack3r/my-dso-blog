@@ -84,3 +84,6 @@ The website is deployed automatically to GitHub Pages by a prepared GitHub Actio
 ### Deploying using NGINX
 
 To deploy the site using NGINX and Docker, follow this [guide](./docs/guides/deploy-docusaurus-with-docker-and-nginx.md)
+title
+gitRepositoryUrl.
+
