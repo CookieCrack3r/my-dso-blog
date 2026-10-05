@@ -15,19 +15,16 @@ V-Server Setup/README.md
 ---
 
 ## Table of Contents
-- [Overview](#Overview)
-- [Project_Structure](#Project_Structure)
-- [Prerequisites](#Prerequisites)
-- [Server_Setup_(V-Server)](#Server_Setup_(V-Server))
-- [SSH_Key_Authentication](#SSH_Key_Authentication)
-- [Disable_Password_Login](#Disable_Password_Login)
-- [NGINX_Installation_&_Configuration](NGINX_Installation_&_Configuration)
-- [Git_Configuration_on_Server](Git_Configuration_on_Server)
-- [GitHub_SSH_Access_from_Server](GitHub_SSH_Access_from_Server)
-- [Testing_&_Validation](Testing_&_Validation)
-- [Security_Considerations](Security_Considerations)
-- [Checklist_(Assignment_Requirements)](Checklist_(Assignment_Requirements))
-- [Extras_/_Notes](Extras_/_Notes)
+- [Project_Structure](#project_structure)
+- [Prerequisites](#prerequisites)
+- [Server_Setup_(V-Server)](#server_setup_v-server)
+- [SSH_Key_Authentication](#ssh_key_authentication)
+- [Disable_Password_Login](#disable_password_login)
+- [NGINX_Installation_&_Configuration](#nginx_installation__configuration)
+- [Git_Configuration_on_Server](#git_configuration_on_server)
+- [GitHub_SSH_Access_from_Server](#github_ssh_access_from_server)
+- [Testing_&_Validation_Checklist](#testing__validation_checklist)
+- [Security_Considerations](#security_considerations)
 
 ---
 
@@ -133,8 +130,10 @@ sudo nano /var/www/html/index.html
 
 Example:
 
+```html
 <h1>Welcome to my V-Server 🚀</h1>
 <p>NGINX is successfully running.</p>
+```
 
 Validate config:
 ```
@@ -150,7 +149,9 @@ sudo systemctl restart nginx
 
 Test in browser:
 
+```
 http://<server-ip>
+```
 
 ---
 
