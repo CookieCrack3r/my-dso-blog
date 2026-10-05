@@ -44,26 +44,40 @@ explicitly authorized to test.
 ## Challenges
 
 | # | Challenge | Category | Difficulty | Video |
-|---|-----------|----------|------------|-------|
-| 1 | _tbd_ | _tbd_ | _tbd_ | _tbd_ |
-| 2 | _tbd_ | _tbd_ | _tbd_ | _tbd_ |
+| --- | --- | --- | --- | --- |
+| 1 | [Login Admin](./login-admin/README.md) | Injection (SQLi) | ⭐⭐ | _tbd_ |
+| 2 | [View Another User's Basket](./view-basket/README.md) | Broken Access Control (IDOR) | ⭐⭐ | _tbd_ |
+| 3 | [DOM XSS](./dom-xss/README.md) | Cross-Site Scripting | ⭐ | _tbd_ |
 
-### 1. Challenge Name
+### 1. Login Admin
 
-- **Category:** _tbd_
-- **Documentation:** _tbd_
+- **Category:** Injection – SQL Injection (A03:2021)
+- **Documentation:** [login-admin/README.md](./login-admin/README.md)
 - **Video:** _tbd_
 
-**Risks and consequences:** _Short explanation of what an attacker can do with this vulnerability and what the
-consequences for a real company or its users could be._
+**Risks and consequences:** An SQL injection in the login form lets an attacker log in as any user, including
+the administrator, without a password. From there an attacker can read or modify other users' data and
+potentially dump entire database tables, leading to full account takeover and a data breach.
 
-### 2. Challenge Name
+### 2. View Another User's Basket
 
-- **Category:** _tbd_
-- **Documentation:** _tbd_
+- **Category:** Broken Access Control – IDOR (A01:2021)
+- **Documentation:** [view-basket/README.md](./view-basket/README.md)
 - **Video:** _tbd_
 
-**Risks and consequences:** _tbd_
+**Risks and consequences:** The server returns a basket by a client-controlled id without checking ownership,
+so an attacker can read other customers' baskets just by changing the id. The same pattern often exposes
+orders and profile data and enables large-scale scraping of customer information.
+
+### 3. DOM XSS
+
+- **Category:** Cross-Site Scripting – DOM-based (A03:2021)
+- **Documentation:** [dom-xss/README.md](./dom-xss/README.md)
+- **Video:** _tbd_
+
+**Risks and consequences:** The search input is rendered without proper encoding, so crafted input is executed
+as code in the victim's browser. An attacker can steal session tokens, act as the victim or target many users
+at once through a prepared link.
 
 ## Project Structure
 

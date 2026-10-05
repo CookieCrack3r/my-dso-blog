@@ -3,7 +3,7 @@
 _One to three sentences: what is the challenge about and what is the goal?_
 
 | | |
-|---|---|
+| --- | --- |
 | **Category** | _e.g. Injection_ |
 | **Difficulty** | _e.g. ⭐⭐_ |
 | **OWASP Top 10** | _e.g. A03:2021 – Injection_ |
@@ -38,7 +38,7 @@ _What can an attacker achieve? What could this mean for a real company and its u
 
 1. _First step_
 
-   ![Short description of the screenshot](./img/01-first-step.png)
+   _Screenshot placeholder — add your own image here, e.g._ `![short description](./img/screenshot.png)`
 
 2. _Second step, including the exact payload:_
 
@@ -50,12 +50,47 @@ _What can an attacker achieve? What could this mean for a real company and its u
 
 ## Mitigation
 
-_How can the vulnerability be fixed? Show the root cause fix (ideally with a code example) and
-additional defense-in-depth measures._
+### Vulnerable Code
+
+_Where in the [Juice Shop source code](https://github.com/juice-shop/juice-shop) does the vulnerability occur?
+Link the file and show the relevant lines._
+
+```ts
+// vulnerable code from the Juice Shop repository
+```
+
+### Fixed Code
+
+_Show the corrected version and explain why it fixes the root cause._
+
+```ts
+// fixed code
+```
+
+### Juice Shop Coding Challenge
+
+_Solved challenges with a `</>` icon in the Score Board offer a coding challenge on the real source code.
+Remove this section if the challenge has none._
+
+- **Find It:** _Which lines are vulnerable and why?_
+
+  _Screenshot placeholder — add your own image here, e.g._ `![short description](./img/screenshot.png)`
+
+- **Fix It:** _Which fix is correct and why are the other options not sufficient?_
+
+  _Screenshot placeholder — add your own image here, e.g._ `![short description](./img/screenshot.png)`
+
+### Additional Measures
+
+_Defense-in-depth measures beyond the code fix, e.g. input validation, least privilege, rate limiting, logging
+and monitoring._
 
 ## Verification
 
-_How can you tell the challenge is solved (e.g. the Juice Shop success banner) and how can the fix be verified?_
+_How can you tell the challenge is solved (e.g. the Juice Shop success banner)? How was the fix verified
+(e.g. the accepted "Fix It" solution)?_
+
+_Before publishing: remove all unused image placeholders, as missing images break the Docusaurus build._
 
 ## References
 
