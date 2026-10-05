@@ -122,7 +122,7 @@ Beachte dabei unbedingt, dass alle für das Projekt notwendigen Änderungen auf 
 Bevor Du dein Projekt einreichst, solltest du die folgenden Dinge sicherstellen und getestet haben:
 
 - [√] Die Anwendung kann lokal und in der CI-Pipeline gebaut werden  
-      - [ ] In der package.json des Projektes wirst du ein Skript finden, welches dir hierbei helfen kann einen Build-Prozess lokal auszulösen.  
+      - [√] In der package.json des Projektes wirst du ein Skript finden, welches dir hierbei helfen kann einen Build-Prozess lokal auszulösen.  
 - [√] Die Anwendung wird bei einem Commit auf den Default branch nach GitHub Pages deployed und ist zum Zeitpunkt der Abnahme auf dem aktuellsten Stand
 
 #### 
