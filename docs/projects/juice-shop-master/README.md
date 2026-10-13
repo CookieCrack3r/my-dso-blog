@@ -24,7 +24,8 @@ explicitly authorized to test.
 
 ## Quickstart
 
-**Prerequisites:** [Docker](https://www.docker.com/products/docker-desktop) and a browser with developer tools.
+**Prerequisites:** [Docker](https://www.docker.com/products/docker-desktop), a browser with developer tools and
+[Burp Suite](https://portswigger.net/burp/communityedition) (Community Edition is enough).
 
 1. Pull and start OWASP Juice Shop:
 
@@ -37,9 +38,15 @@ explicitly authorized to test.
 
 2. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-3. Pick a challenge from the [overview below](#challenges) and follow its documentation and video.
+3. Set up Burp Suite as an intercepting proxy (needed for several challenges):
 
-4. Stop the container with `Ctrl+C`. Because of `--rm` the container is removed and all progress is reset.
+   - Start Burp and use its built-in **Proxy → Intercept** browser, or point your own browser at the Burp proxy
+     (`127.0.0.1:8080`) and install the Burp CA certificate.
+   - With intercept on, you can view, edit and forward each request before it reaches Juice Shop.
+
+4. Pick a challenge from the [overview below](#challenges) and follow its documentation and video.
+
+5. Stop the container with `Ctrl+C`. Because of `--rm` the container is removed and all progress is reset.
 
 ## Challenges
 
@@ -83,12 +90,21 @@ at once through a prepared link.
 
 ```text
 juice-shop-master/
-├── README.md               # Project overview (this page)
-├── _challenge-template.md  # Template for new challenge docs (not rendered by Docusaurus)
-└── <challenge-name>/       # One folder per challenge (kebab-case)
-    ├── README.md           # Challenge documentation
-    └── img/                # Screenshots and diagrams
+├── README.md                            # Project overview (this page)
+├── _challenge-template.md               # Template for new challenge docs (not rendered by Docusaurus)
+├── _juice-shop-meister-checkliste.md    # Course submission checklist (not rendered by Docusaurus)
+├── login-admin/                         # Challenge 1 (kebab-case)
+│   ├── README.md                        # Challenge documentation
+│   └── img/                             # Screenshots and diagrams
+├── view-basket/                         # Challenge 2
+│   ├── README.md
+│   └── img/
+└── dom-xss/                             # Challenge 3
+    ├── README.md
+    └── img/
 ```
+
+Files starting with `_` are kept in the repository but are not published as pages by Docusaurus.
 
 ## Tools and Resources
 
