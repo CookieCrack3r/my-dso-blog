@@ -28,3 +28,36 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Quicksand, used by the portfolio start page. Self-hosted (SIL Open Font License, see fonts/quicksand/OFL.txt). */
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/quicksand/quicksand-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./fonts/quicksand/quicksand-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./fonts/quicksand/quicksand-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./fonts/quicksand/quicksand-latin-700-normal.woff2') format('woff2');
+}
