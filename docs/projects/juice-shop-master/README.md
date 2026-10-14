@@ -54,17 +54,17 @@ Both challenges are exploited with **Burp Suite** and come from two different ca
 
 | # | Challenge | Category | Difficulty | Burp tool |
 | --- | --- | --- | --- | --- |
-| 1 | [Login Bender](./login-bender/README.md) | Injection (SQLi) | ⭐⭐⭐ | Repeater |
+| 1 | [Password Strength](./password-strength/README.md) | Broken Authentication | ⭐⭐ | Intruder |
 | 2 | [View Another User's Basket](./view-basket/README.md) | Broken Access Control (IDOR) | ⭐⭐ | Repeater |
 
-### 1. Login Bender
+### 1. Password Strength
 
-- **Category:** Injection – SQL Injection (A03:2021)
-- **Documentation:** [login-bender/README.md](./login-bender/README.md)
+- **Category:** Broken Authentication (A07:2021)
+- **Documentation:** [password-strength/README.md](./password-strength/README.md)
 
-**Risks and consequences:** An SQL injection in the login form lets an attacker log in as a chosen user
-(here Bender) without a password. A targeted login means full takeover of that account, and the same flaw can
-be extended to dump entire database tables, leading to a data breach and loss of customer trust.
+**Risks and consequences:** The admin account uses a weak password and the login has no brute-force protection,
+so an attacker can guess the password with Burp Intruder and gain full administrator access — exposing all
+users' data and orders. Weak passwords with no lockout are among the most common real-world breach causes.
 
 ### 2. View Another User's Basket
 
@@ -82,7 +82,7 @@ juice-shop-master/
 ├── README.md                            # Project overview (this page)
 ├── _challenge-template.md               # Template for new challenge docs (not rendered by Docusaurus)
 ├── _juice-shop-meister-checkliste.md    # Course submission checklist (not rendered by Docusaurus)
-├── login-bender/                        # Challenge 1 (kebab-case)
+├── password-strength/                   # Challenge 1 (kebab-case)
 │   ├── README.md                        # Challenge documentation
 │   └── img/                             # Screenshots and diagrams
 └── view-basket/                         # Challenge 2
