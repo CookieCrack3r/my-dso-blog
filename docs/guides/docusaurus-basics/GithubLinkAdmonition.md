@@ -19,7 +19,7 @@ To use the component, provide the required `link` to a GitHub repository or page
 ### Example
 
 ```jsx
-import GithubLinkAdmonition from './GithubLinkAdmonition';
+import GithubLinkAdmonition from '@site/src/components/github-link-admonition';
 
 const MyComponent = () => {
   return (

@@ -17,7 +17,7 @@ together with a PostgreSQL database, so nothing is built on the deployment host.
   - [6. API and admin](#6-api-and-admin)
 - [Further References](#further-references)
 
-import GithubLinkAdmonition from '@site/src/components/GithubLinkAdmonition';
+import GithubLinkAdmonition from '@site/src/components/github-link-admonition';
 
 <GithubLinkAdmonition
     link="https://github.com/CookieCrack3r/truck-sign"

@@ -14,7 +14,7 @@ In this project I host WordPress with a MySQL database using Docker Compose. The
   - [5. Testing](#5-testing)
 - [Further References](#further-references)
 
-import GithubLinkAdmonition from '@site/src/components/GithubLinkAdmonition';
+import GithubLinkAdmonition from '@site/src/components/github-link-admonition';
 
 <GithubLinkAdmonition
     link="https://github.com/CookieCrack3r/Wordpress_DA"

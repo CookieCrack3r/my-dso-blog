@@ -15,7 +15,7 @@ the world is stored in a named volume and the container restarts automatically i
   - [5. Testing](#5-testing)
 - [Further References](#further-references)
 
-import GithubLinkAdmonition from '@site/src/components/GithubLinkAdmonition';
+import GithubLinkAdmonition from '@site/src/components/github-link-admonition';
 
 <GithubLinkAdmonition
     link="https://github.com/CookieCrack3r/Minecraft_DA"

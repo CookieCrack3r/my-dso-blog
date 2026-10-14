@@ -15,7 +15,7 @@ Developer Akademie Docusaurus starter template and is deployed automatically to 
   - [6. GitHub Pages settings](#6-github-pages-settings)
 - [Further References](#further-references)
 
-import GithubLinkAdmonition from '@site/src/components/GithubLinkAdmonition';
+import GithubLinkAdmonition from '@site/src/components/github-link-admonition';
 
 <GithubLinkAdmonition
     link="https://github.com/CookieCrack3r/my-dso-blog"

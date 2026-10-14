@@ -14,7 +14,7 @@ with all environment-specific configuration provided through an `.env` file.
   - [4. Containerization](#4-containerization)
 - [Further References](#further-references)
 
-import GithubLinkAdmonition from '@site/src/components/GithubLinkAdmonition';
+import GithubLinkAdmonition from '@site/src/components/github-link-admonition';
 
 <GithubLinkAdmonition
     link="https://github.com/CookieCrack3r/baby-tools-world"
