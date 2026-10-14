@@ -1,23 +1,38 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+/* Design tokens of the portfolio start page (Figma: DevSecOps portfolio).
+   They are scoped to this page, so docs and blog keep the default Docusaurus theme. */
+.portfolio {
+  --color-blue: #266ad9;
+  --color-dark: #262e34;
+  --color-card: #2f4563;
+  --color-white: #ffffff;
+  --color-cream: #f8f5ec;
+  --color-dot: #738398;
+  --color-skill-card: rgba(145, 201, 243, 0.1);
+  --color-skill-card-mobile: rgba(38, 106, 217, 0.1);
 
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  --content-width: 1200px;
+  /* 120px at the 1440px design width, shrinking on smaller desktops. */
+  --page-padding: clamp(24px, 8.333vw, 120px);
+  --radius-card: 30px;
+
+  /* Infima (Docusaurus' base CSS) variables used by headings and links */
+  --ifm-font-family-base: 'Quicksand', system-ui, sans-serif;
+  --ifm-heading-font-family: 'Quicksand', system-ui, sans-serif;
+  --ifm-link-color: var(--color-white);
+  --ifm-link-hover-color: var(--color-white);
+
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  font-family: var(--ifm-font-family-base);
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+.portfolio :focus-visible {
+  outline: 2px solid var(--color-cream);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(html):has(.portfolio) {
+    scroll-behavior: smooth;
   }
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
