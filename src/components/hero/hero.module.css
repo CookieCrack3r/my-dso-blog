@@ -1,0 +1,133 @@
+.hero {
+  scroll-margin-top: 109px;
+  background-color: var(--color-blue);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: minmax(0, 664px) minmax(0, 441.6px);
+  grid-template-areas:
+    'intro portrait'
+    'about portrait'
+    'cta portrait';
+  justify-content: space-between;
+  column-gap: 40px;
+  row-gap: 40px;
+  max-width: calc(var(--content-width) + 2 * var(--page-padding));
+  margin: 0 auto;
+  padding: 60px var(--page-padding) 72px;
+}
+
+.intro {
+  grid-area: intro;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.greeting,
+.name,
+.jobTitle,
+.about {
+  margin: 0;
+  color: var(--color-white);
+  line-height: 1.2;
+}
+
+.greeting {
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.name {
+  font-size: clamp(48px, calc(9.6vw - 50px), 88px);
+  font-weight: 700;
+}
+
+.jobTitle {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.portrait {
+  grid-area: portrait;
+  align-self: center;
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 441.6 / 479;
+  border-radius: var(--radius-card);
+  object-fit: cover;
+}
+
+.about {
+  grid-area: about;
+  font-size: 22px;
+  font-weight: 600;
+  white-space: pre-line;
+}
+
+.cta {
+  grid-area: cta;
+}
+
+@media (max-width: 1023px) {
+  .hero {
+    scroll-margin-top: 73px;
+  }
+
+  .content {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'intro'
+      'portrait'
+      'about'
+      'cta';
+    row-gap: 0;
+    padding: 24px 39px 40px 26px;
+  }
+
+  .intro {
+    gap: 8px;
+  }
+
+  .greeting {
+    font-size: 24px;
+  }
+
+  .name {
+    font-size: 48px;
+    line-height: 0.9;
+  }
+
+  .jobTitle {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .portrait {
+    justify-self: center;
+    width: min(313px, 100%);
+    margin-top: 32px;
+  }
+
+  .portrait img {
+    aspect-ratio: 313 / 300;
+  }
+
+  .about {
+    margin-top: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    white-space: normal;
+  }
+
+  .cta {
+    justify-self: center;
+    /* Visible gap in the mobile design (its text box is shorter than the text it contains). */
+    margin-top: 17px;
+  }
+}
