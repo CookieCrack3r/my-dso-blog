@@ -1,0 +1,105 @@
+.track {
+  /* Positioned so that page offsets are measured relative to the track. */
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 20px 8px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scroll-padding-inline: 20px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.page {
+  display: flex;
+  flex: 0 0 340px;
+  flex-direction: column;
+  gap: 16px;
+  max-width: calc(100vw - 50px);
+  margin: 0;
+  padding: 16px 8px 16px 12px;
+  border-radius: var(--radius-card);
+  background-color: var(--color-skill-card-mobile);
+  list-style: none;
+  scroll-snap-align: start;
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.skillName {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  min-width: 48px;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  display: block;
+  width: auto;
+  height: 45px;
+}
+
+.label {
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.highlights {
+  flex: 1;
+  margin: 0;
+  padding-left: 24px;
+  color: var(--color-white);
+  font-size: 16px;
+  line-height: 1.2;
+  list-style: disc;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 14px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--color-dot);
+  cursor: pointer;
+  transition:
+    width 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.activeDot {
+  width: 18px;
+  background-color: var(--color-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,53 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: calc(var(--content-width) + 2 * var(--page-padding));
+  margin: 0 auto;
+  padding: 72px var(--page-padding);
+}
+
+.headline {
+  margin: 0;
+  color: var(--color-white);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 377px));
+  gap: 34px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carousel {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .section {
+    padding-top: 80px;
+  }
+
+  .content {
+    padding: 0 0 0 23px;
+  }
+
+  .headline {
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .grid {
+    display: none;
+  }
+
+  .carousel {
+    display: block;
+    margin-top: 32px;
+  }
+}
