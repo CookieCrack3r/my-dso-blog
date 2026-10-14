@@ -9,6 +9,10 @@ dotenvconfig();
 const blogEnabled = Boolean(process.env.BLOG_ENABLED === 'true')
 const gitRepositoryUrl = process.env.GIT_REPOSITORY_URL ?? 'https://github.com/CookieCrack3r/my-dso-blog'
 
+// Links to the blog, only added when the blog is enabled
+const blogNavbarItems = blogEnabled ? [{to: '/blog', label: 'Blog', position: 'left' as const}] : [];
+const blogFooterItems = blogEnabled ? [{to: '/blog', label: 'Blog'}] : [];
+
 const config: Config = {
   title: 'CookieCrack3r - DevSecOps Learning Journal',
   tagline: 'CookieCrack3r - DevSecOps Enthusiast documenting the journey from Linux basics to secure CI/CD pipelines',
@@ -92,6 +96,7 @@ const config: Config = {
           label: 'Github',
           position: 'right',
         },
+        ...blogNavbarItems,
       ],
     },
     footer: {
@@ -121,6 +126,7 @@ const config: Config = {
               label: 'Template',
               href: 'https://github.com/Developer-Akademie-DevSecOpsKurs/dev-blog-template',
             },
+            ...blogFooterItems,
           ],
         },
       ],
@@ -145,16 +151,5 @@ const config: Config = {
     },
   } satisfies Preset.ThemeConfig,
 };
-
-
-if (blogEnabled) {
-  (config.themeConfig.navbar as any).items.push({to: '/blog', label: 'Blog', position: 'left'});
-  (
-    config.themeConfig.footer as any
-  ).links[1].items.push({
-    to: '/blog',
-    label: 'Blog',
-  });
-}
 
 export default config;
