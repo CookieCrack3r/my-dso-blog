@@ -1,0 +1,163 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-card);
+  background-color: var(--color-card);
+}
+
+.headline {
+  display: flex;
+}
+
+.title {
+  margin: 0;
+  color: var(--color-white);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.titleSuffix {
+  font-weight: 400;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.body {
+  display: flex;
+}
+
+.image {
+  display: block;
+  border-radius: var(--radius-card);
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: var(--color-skill-card);
+  color: var(--color-white);
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.description {
+  margin: 0;
+  color: var(--color-white);
+  line-height: 1.25;
+  white-space: pre-line;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+}
+
+/* Desktop card next to the project list */
+
+.featured {
+  gap: 32px;
+  width: 100%;
+  max-width: 913px;
+  padding: 32px;
+}
+
+.featured .headline {
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 34px;
+  row-gap: 16px;
+}
+
+.featured .title {
+  min-width: min(359px, 100%);
+  font-size: 40px;
+}
+
+.featured .tags {
+  gap: 4px;
+}
+
+.featured .body {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.featured .image {
+  flex: 0 0 auto;
+  width: 355px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 355 / 240;
+}
+
+.featured .details {
+  flex: 0 1 456px;
+  align-items: flex-end;
+}
+
+.featured .description {
+  width: 100%;
+  font-size: 20px;
+}
+
+.featured .buttons {
+  gap: 16px;
+}
+
+/* Stacked mobile card */
+
+.compact {
+  gap: 16px;
+  width: min(100%, 560px);
+  padding: 32px 22px;
+}
+
+.compact .headline {
+  flex-direction: column;
+  gap: 18px;
+}
+
+.compact .title {
+  font-size: 32px;
+}
+
+.compact .tags {
+  gap: 8px 4px;
+}
+
+.compact .body {
+  flex-direction: column;
+  gap: 16px;
+}
+
+.compact .image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 320 / 216;
+}
+
+.compact .details {
+  gap: 24px;
+}
+
+.compact .description {
+  font-size: 16px;
+}
+
+.compact .buttons {
+  justify-content: space-between;
+}

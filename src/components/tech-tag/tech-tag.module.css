@@ -1,0 +1,22 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  border-radius: 10px;
+  background-color: var(--color-white);
+}
+
+.icon {
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.label {
+  color: var(--color-dark);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 0.94;
+  white-space: pre-line;
+}

@@ -1,0 +1,32 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-white);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.link:hover {
+  color: var(--color-dark);
+}
+
+.arrow {
+  display: block;
+  box-sizing: content-box;
+  padding: 3px 5px;
+  /* The design uses the "arrow top right" icon mirrored vertically. */
+  transform: scaleY(-1);
+}
+
+.label {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 1023px) {
+  .link {
+    font-size: 18px;
+  }
+}
