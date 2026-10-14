@@ -52,16 +52,15 @@ explicitly authorized to test.
 
 Both challenges are exploited with **Burp Suite** and come from two different categories, as required.
 
-| # | Challenge | Category | Difficulty | Burp tool | Video |
-| --- | --- | --- | --- | --- | --- |
-| 1 | [Login Bender](./login-bender/README.md) | Injection (SQLi) | ⭐⭐⭐ | Repeater | _tbd_ |
-| 2 | [View Another User's Basket](./view-basket/README.md) | Broken Access Control (IDOR) | ⭐⭐ | Repeater | _tbd_ |
+| # | Challenge | Category | Difficulty | Burp tool |
+| --- | --- | --- | --- | --- |
+| 1 | [Login Bender](./login-bender/README.md) | Injection (SQLi) | ⭐⭐⭐ | Repeater |
+| 2 | [View Another User's Basket](./view-basket/README.md) | Broken Access Control (IDOR) | ⭐⭐ | Repeater |
 
 ### 1. Login Bender
 
 - **Category:** Injection – SQL Injection (A03:2021)
 - **Documentation:** [login-bender/README.md](./login-bender/README.md)
-- **Video:** _tbd_
 
 **Risks and consequences:** An SQL injection in the login form lets an attacker log in as a chosen user
 (here Bender) without a password. A targeted login means full takeover of that account, and the same flaw can
@@ -71,7 +70,6 @@ be extended to dump entire database tables, leading to a data breach and loss of
 
 - **Category:** Broken Access Control – IDOR (A01:2021)
 - **Documentation:** [view-basket/README.md](./view-basket/README.md)
-- **Video:** _tbd_
 
 **Risks and consequences:** The server returns a basket by a client-controlled id without checking ownership,
 so an attacker can read other customers' baskets just by changing the id. The same pattern often exposes

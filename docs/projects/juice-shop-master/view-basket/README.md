@@ -17,7 +17,6 @@ not explicitly authorized to test.
 | **Difficulty** | ⭐⭐ |
 | **OWASP Top 10** | A01:2021 – Broken Access Control |
 | **Tools** | Burp Suite (Proxy, Repeater) |
-| **Video** | _Link to the video (max. 5 minutes)_ |
 
 ## Table of Contents
 
@@ -30,9 +29,9 @@ not explicitly authorized to test.
 
 ## Vulnerability
 
-The basket is requested by an id that the client controls. The server returns the basket for that id without
-checking whether it belongs to the logged-in user. By changing the id, a user can access baskets that are
-not theirs.
+The basket is requested by an id that the client controls (`GET /rest/basket/{id}`). The server returns the
+basket for that id without checking whether it belongs to the logged-in user. By changing the id, a user can
+access baskets that are not theirs.
 
 ## Risks and Consequences
 
@@ -50,20 +49,20 @@ not theirs.
 
 ### Steps
 
-_Document your own steps here. Add screenshots to `./img/`._
+1. Log in, open your own basket, and let Burp capture the request. Send the `GET /rest/basket/{id}` request to
+   **Repeater** (`Ctrl+R`). Note your own basket id in the path.
 
-1. Log in, open your own basket, and let Burp capture the request. Send the `GET /rest/basket/{id}` request
-   to **Repeater** (`Ctrl+R`).
+2. In Repeater, change the id in the request path to a different number (e.g. from your own `6` to `1`), then
+   send the request:
 
-   _Screenshot placeholder — add your own image here, e.g._ `![Own basket request in Burp Repeater](./img/01-own-basket.png)`
+   ```http
+   GET /rest/basket/1 HTTP/1.1
+   Host: localhost:3000
+   Authorization: Bearer <your-token>
+   ```
 
-2. In Repeater, change the basket id in the request path to another id, then send the request.
-
-   _Screenshot placeholder — add your own image here, e.g._ `![Basket id changed in the request](./img/02-changed-id.png)`
-
-3. The response returns another user's basket and Juice Shop shows the solved-challenge notification.
-
-   _Screenshot placeholder — add your own image here, e.g._ `![Another user's basket returned](./img/03-solved.png)`
+3. The response returns the other user's basket (different products than your own) and Juice Shop shows the
+   solved-challenge notification.
 
 ## Mitigation
 
@@ -72,21 +71,50 @@ _Document your own steps here. Add screenshots to `./img/`._
 
 ### Vulnerable Code
 
-_Link the basket route in the [Juice Shop source](https://github.com/juice-shop/juice-shop) and show that
-it returns the basket by id without an ownership check._
+The basket route looks up the basket by the id from the URL and returns it without verifying ownership
+([`routes/basket.ts`](https://github.com/juice-shop/juice-shop/blob/master/routes/basket.ts)):
 
 ```ts
-// vulnerable code from the Juice Shop repository
+// routes/basket.ts
+export function retrieveBasket () {
+  return async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = req.params.id
+      const basket = await BasketModel.findOne({ where: { id }, include: [{ model: ProductModel, paranoid: false, as: 'Products' }] })
+      // ... no check that the basket belongs to the authenticated user
+      res.json(utils.queryResultToJson(basket))
+    } catch (error) {
+      next(error)
+    }
+  }
+}
 ```
 
 ### Fixed Code
 
-_Show an ownership/authorization check that compares the basket's owner with the authenticated user before
-returning it._
+Compare the requested id with the authenticated user's own basket id before returning anything:
 
 ```ts
-// fixed code with an authorization check
+// routes/basket.ts — enforce ownership
+export function retrieveBasket () {
+  return async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = req.params.id
+      const user = security.authenticatedUsers.from(req)
+      if (!user || user.bid !== parseInt(id, 10)) {
+        res.status(401).send(res.__('Access denied'))
+        return
+      }
+      const basket = await BasketModel.findOne({ where: { id }, include: [{ model: ProductModel, paranoid: false, as: 'Products' }] })
+      res.json(utils.queryResultToJson(basket))
+    } catch (error) {
+      next(error)
+    }
+  }
+}
 ```
+
+Now a request for a basket that is not the caller's own is rejected with `401 Access denied`.
 
 ### Additional Measures
 
@@ -97,12 +125,14 @@ returning it._
 
 ## Verification
 
-_Show the Juice Shop success notification for the solved challenge. Because there is no coding challenge,
-verify the fix by re-running the Repeater request and confirming the server now denies access._
+In the running app, the Juice Shop success banner confirms the challenge was solved. After applying the fix,
+resend the Repeater request for another user's id and confirm the server now responds with `401 Access denied`
+instead of returning the basket.
 
 ## References
 
 - [OWASP: Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
 - [OWASP Cheat Sheet: Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
 - [Burp Suite: Repeater](https://portswigger.net/burp/documentation/desktop/tools/repeater)
+- [Juice Shop source: routes/basket.ts](https://github.com/juice-shop/juice-shop/blob/master/routes/basket.ts)
 - [Pwning OWASP Juice Shop](https://pwning.owasp-juice.shop/)

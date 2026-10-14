@@ -18,7 +18,6 @@ not explicitly authorized to test.
 | **Difficulty** | ⭐⭐⭐ |
 | **OWASP Top 10** | A03:2021 – Injection |
 | **Tools** | Burp Suite (Proxy, Repeater) |
-| **Video** | _Link to the video (max. 5 minutes)_ |
 
 ## Table of Contents
 
@@ -32,13 +31,13 @@ not explicitly authorized to test.
 ## Vulnerability
 
 The login endpoint builds its SQL query by concatenating the user input directly into the query string instead
-of using parameters. Because the input is treated as part of the query and not as data, an attacker can change
-the meaning of the query, comment out the password check and authenticate as a chosen account.
+of using parameters. Because the `email` value becomes part of the query itself, an attacker can inject SQL,
+comment out the password check and authenticate as a chosen account.
 
 ## Risks and Consequences
 
 - An attacker can log in as a specific user without their password.
-- With a targeted login an attacker takes over exactly the account they want, including its orders and data.
+- A targeted login means complete takeover of that account, including its orders and personal data.
 - The same flaw can be extended to read entire database tables (user records, password hashes).
 - For a real company this means targeted account takeover, a data breach, GDPR fines and loss of customer trust.
 
@@ -51,55 +50,70 @@ the meaning of the query, comment out the password check and authenticate as a c
 
 ### Steps
 
-_Document your own steps and the exact input you used here. Add screenshots to `./img/`._
-
 1. In Burp, turn **Proxy → Intercept** on, then submit the login form with any values so the request is captured.
-
-   _Screenshot placeholder — add your own image here, e.g._ `![Login request captured in Burp Proxy](./img/01-proxy-intercept.png)`
 
 2. Send the captured `POST /rest/user/login` request to **Repeater** (`Ctrl+R`).
 
-   _Screenshot placeholder — add your own image here, e.g._ `![Request in Burp Repeater](./img/02-repeater.png)`
+3. In Repeater, set the `email` field in the JSON body to the payload below and use any value as the password,
+   then send the request:
 
-3. In Repeater, modify the `email` field in the JSON body with an SQL injection that targets **Bender's**
-   account and comments out the password check, then send the request. _Document the exact payload you used._
+   ```text
+   bender@juice-sh.op'--
+   ```
 
-   _Screenshot placeholder — add your own image here, e.g._ `![Modified email field with injection](./img/03-injection.png)`
+   The trailing `'--` closes the string and comments out the `AND password = '…'` part of the query, so the
+   account is selected by the email column alone. Targeting Bender's address returns Bender, not the admin.
 
-4. The response returns an authentication token for Bender. Use it in the browser (or show it in the response)
-   and Juice Shop displays the solved-challenge notification.
-
-   _Screenshot placeholder — add your own image here, e.g._ `![Challenge solved notification](./img/04-solved.png)`
+4. The response returns an authentication token for Bender (see `umail` in the response). Juice Shop shows the
+   solved-challenge notification.
 
 ## Mitigation
 
 ### Vulnerable Code
 
-_Link the login handler in the [Juice Shop source](https://github.com/juice-shop/juice-shop) and show the
-string-concatenated query._
+The login handler concatenates the request input directly into the SQL string
+([`routes/login.ts`](https://github.com/juice-shop/juice-shop/blob/master/routes/login.ts)):
 
 ```ts
-// vulnerable code from the Juice Shop repository
+// routes/login.ts
+models.sequelize.query(
+  `SELECT * FROM Users WHERE email = '${req.body.email || ''}' AND password = '${security.hash(req.body.password || '')}' AND deletedAt IS NULL`,
+  { model: UserModel, plain: true }
+)
 ```
+
+The `${req.body.email}` value is part of the query text, so input like `bender@juice-sh.op'--` changes the
+query structure.
 
 ### Fixed Code
 
-_Show a parameterised query / prepared statement and explain why it removes the root cause: input is sent
-separately from the query and can no longer change its structure._
+Use a parameterised (bound) query so the input is sent separately from the SQL and can no longer change its
+structure:
 
 ```ts
-// fixed code using parameterised queries
+// routes/login.ts — parameterised query
+models.sequelize.query(
+  'SELECT * FROM Users WHERE email = $email AND password = $password AND deletedAt IS NULL',
+  {
+    bind: {
+      email: req.body.email || '',
+      password: security.hash(req.body.password || '')
+    },
+    model: UserModel,
+    plain: true
+  }
+)
 ```
+
+With `bind`, the database treats `email` and `password` as data, so `'--` is looked up as a literal email and
+no longer bypasses the password check.
 
 ### Juice Shop Coding Challenge
 
-- **Find It:** _Mark the vulnerable lines in the login handler._
-
-  _Screenshot placeholder — add your own image here, e.g._ `![Find It: vulnerable lines selected](./img/find-it.png)`
-
-- **Fix It:** _Choose the parameterised-query fix and explain why the other options are not sufficient._
-
-  _Screenshot placeholder — add your own image here, e.g._ `![Fix It: correct fix accepted](./img/fix-it.png)`
+- **Find It:** the vulnerable line is the raw `models.sequelize.query(...)` call that concatenates
+  `req.body.email` into the `SELECT` statement.
+- **Fix It:** choose the option that uses a parameterised query with `bind`. Options that only escape quotes or
+  validate the email format are insufficient, because injection can still occur through other characters.
 
 ### Additional Measures
 
@@ -110,12 +124,14 @@ separately from the query and can no longer change its structure._
 
 ## Verification
 
-_Show the Juice Shop success notification for the solved challenge and how the accepted "Fix It" solution
-confirms the fix._
+After applying the fix, resend the same Repeater request: the response is now `Invalid email or password.`
+instead of a token. In the running app, the Juice Shop success banner confirms the challenge was solved, and
+the accepted **Fix It** solution confirms the code fix.
 
 ## References
 
 - [OWASP: SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)
 - [OWASP Cheat Sheet: SQL Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
 - [Burp Suite: Repeater](https://portswigger.net/burp/documentation/desktop/tools/repeater)
+- [Juice Shop source: routes/login.ts](https://github.com/juice-shop/juice-shop/blob/master/routes/login.ts)
 - [Pwning OWASP Juice Shop](https://pwning.owasp-juice.shop/)
