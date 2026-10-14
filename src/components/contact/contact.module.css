@@ -1,0 +1,154 @@
+.content {
+  display: grid;
+  grid-template-columns: minmax(0, 706px) auto;
+  grid-template-areas:
+    'headline tagline'
+    'text channels';
+  column-gap: 50px;
+  row-gap: 40px;
+  max-width: calc(var(--content-width) + 2 * var(--page-padding));
+  margin: 0 auto;
+  padding: 72px var(--page-padding);
+}
+
+.headline {
+  grid-area: headline;
+  margin: 0;
+  color: var(--color-white);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tagline {
+  grid-area: tagline;
+  align-self: end;
+  margin: 0;
+  color: var(--color-white);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.text {
+  grid-area: text;
+  color: var(--color-white);
+  font-size: 18px;
+  line-height: 1.2;
+  text-align: justify;
+}
+
+.text p,
+.text ul {
+  margin: 0;
+}
+
+.text ul {
+  padding-left: 27px;
+  list-style: disc;
+}
+
+.channels {
+  grid-area: channels;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.channel {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.channel img {
+  display: block;
+  flex-shrink: 0;
+}
+
+.channel:hover {
+  color: var(--color-white);
+}
+
+.email {
+  text-underline-offset: 4px;
+}
+
+.channel:hover .email {
+  text-decoration: underline;
+}
+
+.profileLink {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.channel:hover .profileLink {
+  text-decoration-thickness: 2px;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 1023px) {
+  .section {
+    padding-top: 80px;
+  }
+
+  .content {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'headline'
+      'text'
+      'tagline'
+      'channels';
+    row-gap: 0;
+    padding: 0 24px;
+  }
+
+  .headline {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .text {
+    max-width: 340px;
+    margin-top: 32px;
+    font-size: 16px;
+    line-height: 1.1;
+  }
+
+  .text ul {
+    padding-left: 24px;
+  }
+
+  .tagline {
+    margin-top: 40px;
+    font-size: 18px;
+  }
+
+  .channels {
+    gap: 16px;
+    margin-top: 24px;
+    padding: 0 3px;
+  }
+
+  .channel {
+    gap: 8px;
+    font-size: 16px;
+  }
+}
