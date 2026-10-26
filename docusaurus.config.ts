@@ -8,6 +8,7 @@ dotenvconfig();
 /* TODO: change to read configuration from environment */
 const blogEnabled = Boolean(process.env.BLOG_ENABLED === 'true')
 const gitRepositoryUrl = process.env.GIT_REPOSITORY_URL ?? 'https://github.com/CookieCrack3r/my-dso-blog'
+const portfolioUrl = process.env.PORTFOLIO_URL ?? 'https://cookiecrack3r.github.io/Docusaurus-Portfolio/'
 
 const config: Config = {
   title: 'CookieCrack3r - DevSecOps Learning Journal',
@@ -36,6 +37,11 @@ const config: Config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
+  },
+
+  // Values used by pages, read with useDocusaurusContext()
+  customFields: {
+    portfolioUrl,
   },
 
   presets: [
@@ -76,9 +82,12 @@ const config: Config = {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'DSO Learning Journal',
+      // Logo and title lead back to my portfolio (same tab)
       logo: {
         alt: 'DSO Learning Journal Logo',
         src: 'img/logo.svg',
+        href: portfolioUrl,
+        target: '_self',
       },
       items: [
         {
@@ -101,10 +110,6 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/guides/intro',
-            },
-            {
               label: 'Projects',
               to: '/docs/projects',
             },
@@ -113,6 +118,10 @@ const config: Config = {
         {
           title: 'More',
           items: [
+            {
+              label: 'Portfolio',
+              href: portfolioUrl,
+            },
             {
               label: 'GitHub',
               href: gitRepositoryUrl,
