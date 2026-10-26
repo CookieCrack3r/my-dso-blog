@@ -81,10 +81,10 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'DSO Learning Journal',
+      title: 'Docusaurus Portfolio',
       // Logo and title lead back to my portfolio (same tab)
       logo: {
-        alt: 'DSO Learning Journal Logo',
+        alt: 'Docusaurus Portfolio Logo',
         src: 'img/logo.svg',
         href: portfolioUrl,
         target: '_self',
